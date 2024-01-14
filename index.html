@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dating invitation</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #ffc0cb; /* Рожевий колір */
+            margin: 0; /* Видаляє зовнішні відступи */
+            padding: 0; /* Видаляє внутрішні відступи */
+            height: 100vh; /* Налаштування висоти на весь екран */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        #invitation {
+            margin-top: 50px;
+        }
+        #invitation p {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        #yes, #no {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 10px;
+            border-radius: 15px; /* Закруглені кути */
+            border: none;
+            outline: none;
+        }
+        #image-container {
+            display: none;
+            margin-top: 20px;
+        }
+        #yeeep-message {
+            font-size: 24px;
+            font-weight: bold;
+            color: green;
+            display: none;
+            position: relative;
+        }
+        .blinking-stars {
+            font-size: 36px;
+            color: yellow; /* Жовтий колір зірочок */
+            position: absolute;
+        }
+        #waving-cat {
+            width: 150%; /* Збільшений розмір милого котика на 150% ширини екрану */
+            margin: 20px auto; /* Центруємо котика по центру сторінки */
+            display: none;
+            animation: waveTail 4s infinite alternate; /* Анімація махання хвостиком */
+        }
+
+        @keyframes waveTail {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(20deg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="invitation">
+    <p>Do you wanna go out with me?</p>
+    <button id="yes" onclick="showMessage()">Так</button>
+    <button id="no" onclick="shuffleNo()">Ні</button>
+</div>
+
+<div id="image-container">
+    <!-- Зображення буде вставлене тут -->
+</div>
+
+<div id="yeeep-message">Yeeeyyy!!
+    <div class="blinking-stars">&#9733;</div>
+    <div class="blinking-stars" style="right: 0;">&#9733;</div>
+</div>
+
+<div id="waving-cat">&#x1F638;</div>
+
+<script>
+    function showMessage() {
+        document.getElementById("invitation").style.display = "none";
+        document.getElementById("image-container").style.display = "block";
+        document.getElementById("yeeep-message").style.display = "block";
+        document.getElementById("waving-cat").style.display = "block";
+        createStars(2); // Змінив кількість зірочок на 2
+    }
+
+    function shuffleNo() {
+        var noButton = document.getElementById("no");
+        var xPos = Math.floor(Math.random() * window.innerWidth - noButton.clientWidth);
+        var yPos = Math.floor(Math.random() * window.innerHeight - noButton.clientHeight);
+
+        noButton.style.position = "absolute";
+        noButton.style.left = xPos + "px";
+        noButton.style.top = yPos + "px";
+    }
+
+    function createStars(numberOfStars) {
+        var starsContainer = document.getElementById("yeeep-message");
+        for (var i = 0; i < numberOfStars; i++) {
+            var star = document.createElement("div");
+            star.className = "blinking-stars";
+            star.innerHTML = "&#9733;"; // Зірочка
+            setRandomPosition(star);
+            starsContainer.appendChild(star);
+        }
+    }
+
+    function setRandomPosition(element) {
+        var xPos = Math.floor(Math.random() * window.innerWidth);
+        var yPos = Math.floor(Math.random() * window.innerHeight);
+        element.style.left = xPos + "px";
+        element.style.top = yPos + "px";
+    }
+</script>
+
+</body>
+</html>
